@@ -41,12 +41,11 @@ public class Sorts {
 	}
 
 	private static void mergeSortedHalves(int[] arr, int left, int middle, int right) {
-		int[] temp = new int[right - left + 1];
+                int[] temp = new int[right - left + 1];
 		int index1 = left;
 		int index2 = middle + 1;
 		int index = 0;
 		
-		System.out.printf("Left: %d, Middle: %d, Right: %d\n", left, middle, right);
 
 		while(index1 <= middle && index2 <= right) {
 			if(arr[index1] < arr[index2]) {
@@ -57,7 +56,6 @@ public class Sorts {
 				temp[index] = arr[index2];
 				index2++;
 			}
-			System.out.printf("Index1: %d, Index2: %d\n", index1, index2);
 			index++;
 		}
 		if(index1 == middle + 1) {
@@ -68,14 +66,13 @@ public class Sorts {
 		}
 		else {
 			for(int i = index1; i <= middle; i++) {
-				System.out.printf("Index: %d, i: %d\n", index, i);
-				temp[index - left] = arr[i];
+				temp[index] = arr[i];
 				index++;
 			}
 		}
 
-		for(int i = left; i <= right; i++) {
-			arr[i] = temp[i];
+		for(int i = 0; i < temp.length; i++) {
+			arr[i+left] = temp[i];
 		}
 	}
 
