@@ -2,7 +2,7 @@ public class Test {
 
 	public static void main(String[] args) {
 		int[] testArray = {5, 19, 24, 13, 7, 58, 12, 10, 4, 2, 84, 32, 69, 100};
-		Sorts.mergeSort(testArray, testArray.length);
+		Sorts.quickSort(testArray, testArray.length);
 		printArray(testArray);
 	}
 

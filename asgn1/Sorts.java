@@ -77,6 +77,69 @@ public class Sorts {
 	}
 
 	public static void quickSort(int[] arr, int N) {
-
+           quickSort(arr,0,N-1);
 	}
+
+        private static void quickSort(int[] arr, int first, int last){
+           printArray(arr);
+           if(first < last){
+              setPivotToEnd(arr,first, last);
+              int pivotIndex = splitList(arr,first,last);
+              quickSort(arr, first, pivotIndex -1);
+              quickSort(arr, pivotIndex +1, last);
+           }
+        }
+
+        private static void setPivotToEnd(int[] arr, int first, int last){
+           int mid = (first+last)/2;
+           int min = min(min(arr[first],arr[last]),arr[mid]);
+           int max = max(max(arr[first],arr[last]),arr[mid]);
+           arr[last] = arr[first] + arr[mid] + arr[last]  - min -max;
+           arr[mid] = max;
+           arr[first] = min;
+        }
+
+        private static int splitList(int[] arr, int first, int last){
+           int indexl, indexr, pivot;
+           indexl = first;
+           indexr = last-1;
+           pivot = arr[last];
+           while(indexl < indexr){
+              while(arr[indexl] < pivot){
+                 indexl++;
+              }
+              while(arr[indexr] > pivot && indexr > indexl){
+                 indexr--;
+              }
+              if(indexr > indexl){
+                 swap(arr,indexr,indexl);
+                 indexr--;
+                 indexl++;
+              }
+           }
+           swap(arr,indexl,last);
+           return indexl;
+        }
+
+	private static void printArray(int[] array) {
+		System.out.printf("Sorted array: ");
+		for(int i = 0; i < array.length; i++) {
+			System.out.print(array[i] + ", ");
+		}
+		System.out.println("");
+	}
+
+        private static int min(int a, int b){
+           if(a > b){
+              return b;
+           }
+           return a;
+        }
+
+        private static int max(int a, int b){
+           if(a < b){
+              return b;
+           }
+           return a;
+        }
 }
