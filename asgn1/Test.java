@@ -1,7 +1,7 @@
 public class Test {
 
 	public static void main(String[] args) {
-		int[] testArray = {5, 19, 24, 13, 7, 58, 12, 10, 4, 2, 84, 32, 69, 100};
+		int[] testArray = {4, 2, 1, 7, 13, 5, 14, 9, 12, 6, 15, 3, 11, 8, 10};
 		Sorts.quickSort(testArray, testArray.length);
 		printArray(testArray);
 	}

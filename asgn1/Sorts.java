@@ -9,6 +9,7 @@
 public class Sorts {
 
 	private static void swap(int[] arr, int i, int j) {
+                if(i == j) return;
 		int temp = arr[i];
 		arr[i] = arr[j];
 		arr[j] = temp;
@@ -81,7 +82,6 @@ public class Sorts {
 	}
 
         private static void quickSort(int[] arr, int first, int last){
-           printArray(arr);
            if(first < last){
               setPivotToEnd(arr,first, last);
               int pivotIndex = splitList(arr,first,last);
@@ -104,20 +104,23 @@ public class Sorts {
            indexl = first;
            indexr = last-1;
            pivot = arr[last];
-           while(indexl < indexr){
+           while(indexl <= indexr){
               while(arr[indexl] < pivot){
                  indexl++;
               }
-              while(arr[indexr] > pivot && indexr > indexl){
+              while(arr[indexr] > pivot && indexr >= indexl){
                  indexr--;
               }
-              if(indexr > indexl){
+              if(indexr >= indexl){
                  swap(arr,indexr,indexl);
                  indexr--;
                  indexl++;
               }
            }
+           printArray(arr);
            swap(arr,indexl,last);
+           printArray(arr);
+           System.out.printf("Indexl = %d, indexr = %d\n",indexr, indexl);
            return indexl;
         }
 
