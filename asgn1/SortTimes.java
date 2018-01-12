@@ -3,7 +3,7 @@
  * Max Blau and Jake Territo
  * Assignment 1: Sorting Algorithms
  *
- * Last Revision: 1/10/18
+ * Last Revision: 1/12/18
  */
 
 import java.util.Random;
@@ -24,12 +24,18 @@ public class SortTimes {
 				startTime = System.nanoTime();
 				Sorts.selectionSort(arr1, i);
          			selectionTime = (System.nanoTime() - startTime);
+				System.out.printf("Selection Sort: ");
+				checkIfSorted(arr1);
 				startTime = System.nanoTime();
 				Sorts.mergeSort(arr1, i);
          			mergeTime = (System.nanoTime() - startTime);
-				/*startTime = System.nanoTime();
+				System.out.printf("Merge sort: ");
+				checkIfSorted(arr2);
+				startTime = System.nanoTime();
 				Sorts.quickSort(arr1, i);
-         			quickTime = (System.nanoTime() - startTime);*/
+         			quickTime = (System.nanoTime() - startTime);
+				System.out.printf("Quick sort: ");
+				checkIfSorted(arr3);
 				System.out.printf("N=%d, T_ss=%d, T_ms=%d, T_qs=%d\n", i, selectionTime/1000000, mergeTime/1000000, 420);
 			}
 			System.out.println();
@@ -41,5 +47,14 @@ public class SortTimes {
 		for(int i = 0; i < N; i++) {
 			arr[i] = rand.nextInt(N);
 		}
+	}	
+	private static void checkIfSorted(int[] arr) {
+		for(int i = 1; i < arr.length; i++) {
+			if(arr[i-1] > arr[i]) {
+				System.out.printf("Sort failed at segment: [%d %d] with indices %d and %d\n", arr[i-1], arr[i], i-1, i);
+				return;
+			}
+		}
+		System.out.println("Done");
 	}
 }
