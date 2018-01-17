@@ -17,9 +17,9 @@ public class Sorts {
 
 	public static void selectionSort(int[] arr, int N) {
 		int minIndex;
-		for(int i = 0; i < N - 1; i++) {
+		for(int i = 0; i < N; i++) {
 			minIndex = i;
-			for(int j = i; j < N - 1; j++) {
+			for(int j = i; j < N; j++) {
 				if(arr[minIndex] > arr[j]) {
 					minIndex = j;
 				}
@@ -110,7 +110,7 @@ public class Sorts {
               while(arr[indexl] < pivot){
                  indexl++;
               }
-              while(arr[indexr] > pivot && indexr >= indexl){
+              while(arr[indexr] > pivot && indexr >= indexl && indexr > 0){
                  indexr--;
               }
               if(indexr >= indexl){
