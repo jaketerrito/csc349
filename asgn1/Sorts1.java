@@ -96,65 +96,64 @@ public class Sorts1 {
       }
    }
 
-        private static void setPivotToEnd(int[] arr, int first, int last) {
-           int mid = (first+last)/2;
-           int min = min(min(arr[first],arr[last]),arr[mid]);
-           int max = max(max(arr[first],arr[last]),arr[mid]);
-           arr[last] = arr[first] + arr[mid] + arr[last]  - min -max;
-           count++;
-           arr[mid] = max;
-	   if(mid != first) {
-              arr[first] = min;
-	   }
-        }
+   private static void setPivotToEnd(int[] arr, int first, int last) {
+      int mid = (first+last)/2;
+      int min = min(min(arr[first],arr[last]),arr[mid]);
+      int max = max(max(arr[first],arr[last]),arr[mid]);
+      arr[last] = arr[first] + arr[mid] + arr[last]  - min -max;
+      arr[mid] = max;
+      if(mid != first) {
+         arr[first] = min;
+      }
+   }
 
-        private static int splitList(int[] arr, int first, int last){
-           int indexl, indexr, pivot;
-           indexl = first;
-           indexr = last-1;
-           pivot = arr[last];
-           while(indexl <= indexr){
-              while(arr[indexl] < pivot){
-                 indexl++;
-                 count ++;
-              }
-              count++;
-              while(indexr >= indexl && arr[indexr] > pivot){
-                 indexr--;
-                 count++;
-              }
-              count++;
-              if(indexr >= indexl){
-                 swap(arr,indexr,indexl);
-                 indexr--;
-                 indexl++;
-              }
-           }
-           swap(arr,indexl,last);
-           return indexl;
-        }
+   private static int splitList(int[] arr, int first, int last){
+      int indexl, indexr, pivot;
+      indexl = first;
+      indexr = last-1;
+      pivot = arr[last];
+      while(indexl <= indexr){
+         while(arr[indexl] < pivot){
+            indexl++;
+            count ++;
+         }
+         count++;
+         while(indexr >= indexl && arr[indexr] > pivot){
+            indexr--;
+            count++;
+         }
+         count++;
+         if(indexr >= indexl){
+            swap(arr,indexr,indexl);
+            indexr--;
+            indexl++;
+         }
+      }
+      swap(arr,indexl,last);
+      return indexl;
+   }
 
-	private static void printArray(int[] array) {
-		System.out.printf("Sorted array: ");
-		for(int i = 0; i < array.length; i++) {
-			System.out.print(array[i] + ", ");
-		}
-		System.out.println("");
-	}
+   private static void printArray(int[] array) {
+      System.out.printf("Array: ");
+      for(int i = 0; i < array.length; i++) {
+	 System.out.print(array[i] + ", ");
+      }
+      System.out.println("");
+   }
 
-        private static int min(int a, int b){
-           count++;
-           if(a > b){
-              return b;
-           }
-           return a;
-        }
+   private static int min(int a, int b){
+      count++;
+      if(a > b){
+         return b;
+      }
+      return a;
+   }
 
-        private static int max(int a, int b){
-           count++;
-           if(a < b){
-              return b;
-           }
-           return a;
-        }
+   private static int max(int a, int b){
+      count++;
+      if(a < b){
+         return b;
+      }
+      return a;
+   }
 }

@@ -22,10 +22,10 @@ public class SortCounts {
 			for(int j = 0; j < 100; j++) {
 				fillArray(arr1, i);
 				arr3 = arr2 = Arrays.copyOf(arr1,i);
-				selectionTotal += Sorts1.selectionSort(arr1, i);
-				checkSorted(arr1, i);
-				mergeTotal += Sorts1.mergeSort(arr2, i);
-				checkSorted(arr2,i);
+				//selectionTotal += Sorts1.selectionSort(arr1, i);
+				//checkSorted(arr1, i);
+				//mergeTotal += Sorts1.mergeSort(arr2, i);
+				//checkSorted(arr2,i);
 				quickTotal += Sorts1.quickSort(arr3, i);
 				checkSorted(arr3,i);
 			}
