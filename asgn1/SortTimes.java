@@ -20,7 +20,8 @@ public class SortTimes {
 		for(int i = 5000; i <= 160000; i *= 2) {
 			for(int j = 0; j < 5; j++) {
 				fillArray(arr1, i);
-				arr3 = arr2 = Arrays.copyOf(arr1,i);
+				arr3 = Arrays.copyOf(arr1,i);
+				arr2 = Arrays.copyOf(arr1,i);
 				startTime = System.nanoTime();
 				Sorts.selectionSort(arr1, i);
          			selectionTime = (System.nanoTime() - startTime);

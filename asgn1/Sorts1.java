@@ -7,7 +7,7 @@
  */
 
 public class Sorts1 {
-   private static int count;
+   private static int countm,countq;
 
    private static void swap(int[] arr, int i, int j) {
       if(i == j || arr[i] == arr[j]) return;
@@ -18,10 +18,10 @@ public class Sorts1 {
 
    public static int selectionSort(int[] arr, int N) {
       int minIndex;
-      count = 0;
+      int count = 0;
       for(int i = 0; i < N-1; i++){
          minIndex = i;
-	 for(int j = i; j < N; j++){
+	 for(int j = i+1; j < N; j++){
 	    if(arr[minIndex] > arr[j]){
 	       minIndex = j;
 	    }
@@ -33,9 +33,9 @@ public class Sorts1 {
    }
 
    public static int mergeSort(int[] arr, int N) {
-      count = 0;
+      countm = 0;
       mergeSort(arr, 0, N - 1);
-      return count;
+      return countm;
    }
 
    private static void mergeSort(int[] arr, int first, int last) {
@@ -61,7 +61,7 @@ public class Sorts1 {
 	    temp[index] = arr[index2];
 	    index2++;
 	 }
-         count++;
+         countm++;
 	 index++;
       }
       if(index1 == middle + 1) {
@@ -82,9 +82,9 @@ public class Sorts1 {
    }
 
    public static int quickSort(int[] arr, int N) {
-      count = 0;
+      countq = 0;
       quickSort(arr,0,N-1);
-      return count;
+      return countq;
    }
 
    private static void quickSort(int[] arr, int first, int last){
@@ -98,13 +98,16 @@ public class Sorts1 {
 
    private static void setPivotToEnd(int[] arr, int first, int last) {
       int mid = (first+last)/2;
-      int min = min(min(arr[first],arr[last]),arr[mid]);
-      int max = max(max(arr[first],arr[last]),arr[mid]);
-      arr[last] = arr[first] + arr[mid] + arr[last]  - min -max;
-      arr[mid] = max;
-      if(mid != first) {
-         arr[first] = min;
+      if(arr[first] > arr[last]){
+         swap(arr,first,last);
       }
+      if(arr[last] > arr[mid]){
+         swap(arr,last,mid);
+      }
+      if(arr[first] > arr[last]){
+         swap(arr,first,last);
+      }
+      countq += 3;
    }
 
    private static int splitList(int[] arr, int first, int last){
@@ -115,14 +118,17 @@ public class Sorts1 {
       while(indexl <= indexr){
          while(arr[indexl] < pivot){
             indexl++;
-            count ++;
+            countq ++;
          }
-         count++;
-         while(indexr >= indexl && arr[indexr] > pivot){
-            indexr--;
-            count++;
+         countq++;
+         while(indexr >= indexl){
+            countq++;
+            if(arr[indexr] > pivot){
+               indexr--;
+            }else{
+               break;
+            }
          }
-         count++;
          if(indexr >= indexl){
             swap(arr,indexr,indexl);
             indexr--;
@@ -141,19 +147,4 @@ public class Sorts1 {
       System.out.println("");
    }
 
-   private static int min(int a, int b){
-      count++;
-      if(a > b){
-         return b;
-      }
-      return a;
-   }
-
-   private static int max(int a, int b){
-      count++;
-      if(a < b){
-         return b;
-      }
-      return a;
-   }
 }
