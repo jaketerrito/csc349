@@ -3,39 +3,34 @@
  * Max Blau and Jake Territo
  * Assignment 1: Sorting Algorithms
  *
- * Last Revision: 1/12/18
+ * Last Revision: 1/17/18
  */
 
 import java.util.*;
 
-public class SortTimes {
+public class SortCounts {
 
 	public static void main(String[] argv) {
-		int[] arr1 = new int[160000];
-		int[] arr2 = new int[160000];
-		int[] arr3 = new int[160000];
+		int[] arr1 = new int[12800];
+		int[] arr2 = new int[12800];
+		int[] arr3 = new int[12800];
 		
-		long startTime, quickTime, mergeTime, selectionTime;
+		long quickTotal, mergeTotal, selectionTotal;
 
-		for(int i = 5000; i <= 160000; i *= 2) {
-			for(int j = 0; j < 5; j++) {
+		for(int i = 100; i <= 12800; i *= 2) {
+                   mergeTotal = selectionTotal = quickTotal = 0;
+			for(int j = 0; j < 100; j++) {
 				fillArray(arr1, i);
 				arr3 = arr2 = Arrays.copyOf(arr1,i);
-				startTime = System.nanoTime();
-				Sorts.selectionSort(arr1, i);
-         			selectionTime = (System.nanoTime() - startTime);
+				selectionTotal += Sorts1.selectionSort(arr1, i);
 				checkSorted(arr1, i);
-				startTime = System.nanoTime();
-				Sorts.mergeSort(arr2, i);
-         			mergeTime = (System.nanoTime() - startTime);
+				mergeTotal += Sorts1.mergeSort(arr2, i);
 				checkSorted(arr2,i);
-				startTime = System.nanoTime();
-				Sorts.quickSort(arr3, i);
-         			quickTime = (System.nanoTime() - startTime);
+				quickTotal += Sorts1.quickSort(arr3, i);
 				checkSorted(arr3,i);
-				System.out.printf("N=%d, T_ss=%d, T_ms=%d, T_qs=%d\n", i, selectionTime/1000000, mergeTime/1000000, quickTime/1000000);
 			}
-			System.out.println();
+
+			System.out.printf("N=%d: C_ss=%d, C_ms=%d, C_qs=%d\n", i, selectionTotal/100, mergeTotal/100, quickTotal/100);
 		}
 	}
          private static void checkSorted(int[] arr, int N){
