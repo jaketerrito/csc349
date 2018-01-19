@@ -1,9 +1,9 @@
 /*
  * CSC 349
- * Max Blau and Jake Territo
+ * Max Blau (mbblau) and Jake Territo (jterrito)
  * Assignment 1: Sorting Algorithms
  *
- * Last Revision: 1/12/18
+ * 1/19/18
  */
 
 public class Sorts {

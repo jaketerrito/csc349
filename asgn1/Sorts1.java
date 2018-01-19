@@ -1,13 +1,13 @@
 /*
  * CSC 349
- * Max Blau and Jake Territo
+ * Max Blau (mbblau) and Jake Territo (jterrito)
  * Assignment 1: Sorting Algorithms
  * Counting version
- * Last Revision: 1/17/18
+ * 1/19/18
  */
 
 public class Sorts1 {
-   private static int countm,countq;
+   private static long countm,countq;
 
    private static void swap(int[] arr, int i, int j) {
       if(i == j || arr[i] == arr[j]) return;
@@ -16,9 +16,9 @@ public class Sorts1 {
 	 arr[j] = temp;
    }
 
-   public static int selectionSort(int[] arr, int N) {
+   public static long selectionSort(int[] arr, int N) {
       int minIndex;
-      int count = 0;
+      long count = 0;
       for(int i = 0; i < N-1; i++){
          minIndex = i;
 	 for(int j = i+1; j < N; j++){
@@ -32,7 +32,7 @@ public class Sorts1 {
       return count;
    }
 
-   public static int mergeSort(int[] arr, int N) {
+   public static long mergeSort(int[] arr, int N) {
       countm = 0;
       mergeSort(arr, 0, N - 1);
       return countm;
@@ -81,7 +81,7 @@ public class Sorts1 {
       }
    }
 
-   public static int quickSort(int[] arr, int N) {
+   public static long quickSort(int[] arr, int N) {
       countq = 0;
       quickSort(arr,0,N-1);
       return countq;

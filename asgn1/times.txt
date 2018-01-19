@@ -1,0 +1,38 @@
+Max Blau (mbblau) and Jake Territo (jterrito)
+
+N=5000, T_ss=82, T_ms=20, T_qs=9
+N=5000, T_ss=442, T_ms=1, T_qs=0
+N=5000, T_ss=265, T_ms=470, T_qs=7
+N=5000, T_ss=22, T_ms=9, T_qs=1
+N=5000, T_ss=54, T_ms=25, T_qs=1
+
+N=10000, T_ss=388, T_ms=2, T_qs=1
+N=10000, T_ss=200, T_ms=2, T_qs=3
+N=10000, T_ss=714, T_ms=2, T_qs=1
+N=10000, T_ss=173, T_ms=4, T_qs=1
+N=10000, T_ss=100, T_ms=3, T_qs=1
+
+N=20000, T_ss=1300, T_ms=9, T_qs=3
+N=20000, T_ss=1360, T_ms=68, T_qs=4
+N=20000, T_ss=1304, T_ms=61, T_qs=3
+N=20000, T_ss=1661, T_ms=94, T_qs=3
+N=20000, T_ss=1166, T_ms=4, T_qs=3
+
+N=40000, T_ss=4427, T_ms=44, T_qs=11
+N=40000, T_ss=3960, T_ms=37, T_qs=11
+N=40000, T_ss=4282, T_ms=12, T_qs=7
+N=40000, T_ss=3837, T_ms=13, T_qs=6
+N=40000, T_ss=3780, T_ms=41, T_qs=7
+
+N=80000, T_ss=15678, T_ms=41, T_qs=55
+N=80000, T_ss=14668, T_ms=554, T_qs=13
+N=80000, T_ss=16468, T_ms=53, T_qs=20
+N=80000, T_ss=15043, T_ms=38, T_qs=22
+N=80000, T_ss=15071, T_ms=24, T_qs=12
+
+N=160000, T_ss=55890, T_ms=131, T_qs=36
+N=160000, T_ss=64161, T_ms=564, T_qs=30
+N=160000, T_ss=62831, T_ms=95, T_qs=268
+N=160000, T_ss=57439, T_ms=259, T_qs=29
+N=160000, T_ss=54257, T_ms=264, T_qs=28
+

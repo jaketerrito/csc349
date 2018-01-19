@@ -1,0 +1,10 @@
+Max Blau (mbblau) and Jake Territo (jterrito)
+
+N=100: C_ss=4950, C_ms=540, C_qs=775
+N=200: C_ss=19900, C_ms=1281, C_qs=1769
+N=400: C_ss=79800, C_ms=2960, C_qs=3977
+N=800: C_ss=319600, C_ms=6721, C_qs=8928
+N=1600: C_ss=1279200, C_ms=15042, C_qs=19699
+N=3200: C_ss=5118400, C_ms=33275, C_qs=43299
+N=6400: C_ss=20476800, C_ms=72955, C_qs=94180
+N=12800: C_ss=81913600, C_ms=158689, C_qs=203453

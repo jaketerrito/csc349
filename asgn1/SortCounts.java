@@ -1,9 +1,9 @@
 /*
  * CSC 349
- * Max Blau and Jake Territo
+ * Max Blau (mbblau) and Jake Territo (jterrito)
  * Assignment 1: Sorting Algorithms
  *
- * Last Revision: 1/17/18
+ * 1/19/18
  */
 
 import java.util.*;
@@ -25,16 +25,17 @@ public class SortCounts {
 	    arr3 = Arrays.copyOf(arr1,i); 
             arr2 = Arrays.copyOf(arr1,i);
 	    selectionTotal += Sorts1.selectionSort(arr1, i);
-	    checkSorted(arr1, i);
+	    //checkSorted(arr1, i);
 	    mergeTotal += Sorts1.mergeSort(arr2, i);
-	    checkSorted(arr2,i);
+	    //checkSorted(arr2,i);
 	    quickTotal += Sorts1.quickSort(arr3, i);
-	    checkSorted(arr3,i);
+	    //checkSorted(arr3,i);
 	 }
          System.out.printf("N=%d: C_ss=%d, C_ms=%d, C_qs=%d\n", i, selectionTotal/100, mergeTotal/100, quickTotal/100);
       }
    }
    
+   //Test functio to check if a given array is sorted
    private static void checkSorted(int[] arr, int N){
       int[] sorted = new int[N];
       sorted = Arrays.copyOf(arr,N);
