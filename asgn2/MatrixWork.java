@@ -1,5 +1,6 @@
 import java.lang.*;
-
+import java.util.*;
+import java.io.*;
 public class MatrixWork {
 
    public static void main(String[] args) throws Exception{
@@ -7,7 +8,7 @@ public class MatrixWork {
       File file;
 
       System.out.print("Enter input file: ");
-      try() {
+      try {
          file = new File(in.next());
       } 
       catch(Exception e) {
@@ -15,9 +16,29 @@ public class MatrixWork {
          return;
       }
 
-      int[][] A;
-      int[][] B;
+      in = new Scanner(file);
+      int[][] A  = new int[in.nextInt()][in.nextInt()];
+      for(int i = 0; i < A.length; i++){
+         for(int j = 0; j < A[0].length; j++){
+            A[i][j] = in.nextInt();
+         }
+      }
+      int[][] B  = new int[in.nextInt()][in.nextInt()];
+      for(int i = 0; i < B.length; i++){
+         for(int j = 0; j < B[0].length; j++){
+            B[i][j] = in.nextInt();
+         }
+      }
+      int[][] C;
       
+      try {
+         C = matrixProduct(A,B);
+      } catch (Exception e){
+         System.out.println(e.getMessage());
+         return;
+      }
+
+      printMatrix(C);
    }
 
    public static int[][] matrixProduct(int[][] A, int[][] B) throws Exception{
