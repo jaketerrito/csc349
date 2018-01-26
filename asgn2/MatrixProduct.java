@@ -10,7 +10,7 @@ public class MatrixProduct {
    private static int[][] matrixProduct_DAC(int[][] A, int rowA, int colA, int[][] B, int rowB, int colB, int n) {
       int[][] C = new int[n][n];
       if(n == 1) {
-         C[1][1] = A[rowA][colA] * B[rowB][colB];
+         C[0][0] = A[rowA][colA] * B[rowB][colB];
          return C;
       }
       int[][] C11, C12, C21, C22;
@@ -40,13 +40,13 @@ public class MatrixProduct {
                C[i][j] = C11[i][j];
             }            
             if(i < C.length/2 && j >= C.length/2) {
-               C[i][j] = C12[i][j];
+               C[i][j] = C12[i][j-(C.length/2)];
             }
             if(i >= C.length/2 && j < C.length/2) {
-               C[i][j] = C21[i][j];
+               C[i][j] = C21[i-(C.length/2)][j];
             }
             if(i >= C.length/2 && j >= C.length/2) {
-               C[i][j] = C22[i][j];
+               C[i][j] = C22[i-(C.length/2)][j-(C.length/2)];
             }
          }
       }

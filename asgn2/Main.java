@@ -35,7 +35,7 @@ public class Main {
       try {
          C = MatrixProduct.matrixProduct_DAC(A,B);
       } catch (Exception e){
-         System.out.println("Recieved exception: " + e);
+         e.printStackTrace(System.out);
          return;
       }
 
