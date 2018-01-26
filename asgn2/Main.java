@@ -1,7 +1,8 @@
 import java.lang.*;
-import java.util.*;
 import java.io.*;
-public class MatrixWork {
+import java.util.*;
+
+public class Main {
 
    public static void main(String[] args) throws Exception{
       Scanner in = new Scanner(System.in);
@@ -32,34 +33,13 @@ public class MatrixWork {
       int[][] C;
       
       try {
-         C = matrixProduct(A,B);
+         C = MatrixProduct.matrixProduct_DAC(A,B);
       } catch (Exception e){
          System.out.println("Recieved exception: " + e);
          return;
       }
 
       printMatrix(C);
-   }
-
-   public static int[][] matrixProduct(int[][] A, int[][] B) throws Exception{
-
-      if(A[0].length != B.length) {
-         throw new IllegalArgumentException();
-      }
-
-      int[][] C = new int[A.length][B[0].length];
-
-      for(int i = 0; i < C.length; i++) {
-         for(int j = 0; j < C[0].length; j++) {
-            int sum = 0;
-            for(int k = 0; k < B.length; k++) {
-               sum += A[i][k] * B[k][j];
-            }
-            C[i][j] = sum;
-         }
-      }
-
-      return C;
    }
 
    private static void printMatrix(int[][] mat) {
@@ -72,5 +52,4 @@ public class MatrixWork {
       }
       System.out.println();
    }
-
 }
