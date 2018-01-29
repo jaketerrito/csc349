@@ -30,16 +30,23 @@ public class Main {
             B[i][j] = in.nextInt();
          }
       }
-      int[][] C;
+      int[][] C,D;
       
       try {
-         C = MatrixProduct.matrixProduct_DAC(A,B);
+         C = MatrixProduct.matrixProduct_Strassen(A,B);
+      } catch (Exception e){
+         e.printStackTrace(System.out);
+         return;
+      }
+      
+      try {
+         D = MatrixProduct.matrixProduct_DAC(A,B);
       } catch (Exception e){
          e.printStackTrace(System.out);
          return;
       }
 
-      printMatrix(C);
+      System.out.println(Arrays.deepEquals(C,D));
    }
 
    private static void printMatrix(int[][] mat) {
