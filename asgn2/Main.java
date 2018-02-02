@@ -5,12 +5,12 @@ import java.util.*;
 public class Main {
 
    public static void main(String[] args) throws Exception{
-      Scanner in = new Scanner(System.in);
       File file;
+      Scanner in;
+      TestArray.make();
 
-      System.out.print("Enter input file: ");
       try {
-         file = new File(in.next());
+         file = new File("test_array.txt");
       } 
       catch(Exception e) {
          System.out.println(e.getMessage());
