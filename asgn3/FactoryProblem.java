@@ -1,8 +1,16 @@
+/*
+ * CSC349
+ * Max Blau(mbblau) Jacob Territo(jterrito)
+ * Assignment 3: Dynamic Programming
+ *
+ * 2/16/18
+ */
+
 import java.util.*;
 import java.io.*;
 
 public class FactoryProblem {
-   public static void main(String[] args) {
+   public static void main(String[] args) throws Exception{
       Scanner in = new Scanner(System.in);
       File file;
 
@@ -43,25 +51,24 @@ public class FactoryProblem {
       printFactorySolution(ans,d);
    }
    
-   private int[] solveFactory(int n, int e1, int e2, int x1, int x2, int[][] a, int[][] t, int[][] d){
+   private static int[] solveFactory(int n, int e1, int e2, int x1, int x2, int[][] a, int[][] t, int[][] d){
       int top = x1 + a[0][n-1];
-      int bottom = x2 + a[1][n-1];
+      int bot = x2 + a[1][n-1];
       int temptop;
       int tempbot;
-      for(int i = n-2; i > 0; i--){
-         //Top
-         if(top < bot + t[0][i-1]){
+      for(int i = n-2; i >= 0; i--){
+         if(top < bot + t[0][i]){
             temptop = top + a[0][i];
             d[0][i] = 0;
          }else{
-            temptop = bot + t[0][i-1] + a[0][i];
+            temptop = bot + t[0][i] + a[0][i];
             d[0][i] = 1;
          }
-         if(bot < top + t[1][i-1]){
+         if(bot < top + t[1][i]){
             tempbot = bot + a[1][i];
             d[1][i] = 1;
          }else{
-            tempbot = top + t[1][i-1] + a[1][i];
+            tempbot = top + t[1][i] + a[1][i];
             d[1][i] = 0;
          }
          top = temptop;
@@ -74,13 +81,13 @@ public class FactoryProblem {
       }
    }
 
-   private void printFactorySolution(int[] ans,int[][] d){
+   private static void printFactorySolution(int[] ans,int[][] d){
       System.out.println("Fastest time is: " + ans[0] + "\n");
       System.out.println("The optimal route is:");
-      System.out.println("station 1, line " + ans[1]);
+      System.out.println("station 1, line " + (ans[1]+1));
       int line = ans[1];
       for(int i = 1; i < d[0].length+1; i ++){
-         line = d[line][i-1]
+         line = d[line][i-1];
          System.out.printf("station %d, line %d\n", i+1, line + 1);
       }
    }

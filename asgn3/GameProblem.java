@@ -1,3 +1,10 @@
+/*
+ * CSC349
+ * Max Blau(mbblau) Jacob Territo(jterrito)
+ * Assignment 3: Dynamic Programming
+ *
+ * 2/16/18
+ */
 import java.util.*;
 import java.io.*;
 
