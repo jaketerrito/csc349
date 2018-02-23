@@ -3,7 +3,7 @@
  * Max Blau(mbblau) Jacob Territo(jterrito)
  * Assignment 4: Change Making Proble
  *
- * 2/20/18
+ * 2/23/18
  */
 import java.util.*;
 import java.io.*;
@@ -66,7 +66,6 @@ public class ChangeMaker {
       int[] c = new int[n+1];
       int[] a = new int[n+1];
       int[] res = new int[d.length];
-      //change_DP_Rec(0, d, c, a);
 
       for(int j = 0; j < n+1; j++) {
          if(j == 0) {
@@ -95,53 +94,6 @@ public class ChangeMaker {
 
       return res;
    }
-
-   /*private static int change_DP_Rec(int j, int[] d, int[] c, int[] a) {
-      if(j < 0) {
-         return Integer.MAX_VALUE;
-      }
-      else if(j == 0) {
-         return 0;
-      }
-      
-      int min = Integer.MAX_VALUE;
-      int m = 0;
-      int temp;
-      for(int i = 0; i < d.length; i++) {
-         temp = change_DP_Rec(j-d[i], d, c, a) 
-         if(min > temp) {
-            min = temp;
-            m = i;
-         }
-      }
-      a[j] = m;
-      c[j] = 1 + min;
-      return c[j];
-   }
-
-   private static void change_DP_Rec(int j, int[] d, int[] c, int[] a) {
-      if(j < 0) {
-         //c[j] = Integer.MAX_VALUE;
-         return;
-      }
-      else if(j == 0) {
-         c[j] = 0;
-      }
-      else {
-         int min = Integer.MAX_VALUE;
-         int m = 0;
-         for(int i = 0; i < d.length; i++) {
-            if(j-d[i] < 0) continue;
-            if(min > c[j-d[i]]) {
-               min = c[j-d[i]];
-               m = i;
-            }
-         }
-         a[j] = m;
-         c[j] = 1 + min;
-      }
-      change_DP_Rec(j+1, d, c, a);
-   }*/
 
    public static int[] change_greedy(int n, int[] d){
       int value = n;
