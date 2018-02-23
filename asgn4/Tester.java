@@ -18,16 +18,17 @@ public class Tester {
       int[][] testing_array = {us_denom, sov_denom, two_denom, nick_denom, rand_denom};
       int[] count = {0, 0, 0, 0, 0};
       int[] c;
+      System.out.println("Testing change_DP and change_greedy algorithms");
       for(int i = 1; i <= 200; i++) {
          for(int j = 0; j < 5; j++) {
-            c = change_DP(i, testing_array[j]);
+            c = ChangeMaker.change_DP(i, testing_array[j]);
             int k = c.length-1;
             int dp = 0;
             int greedy = 0;
             while(k >= 0) {
                dp += c[k--];
             }
-            c = change_greedy(i, testing_array[j]);
+            c = ChangeMaker.change_greedy(i, testing_array[j]);
             k = c.length-1;
             while(k >= 0) {
                greedy += c[k--];
@@ -36,6 +37,9 @@ public class Tester {
                count[j] += 1;
             }
          }
+      }
+      for(int i = 1; i < 6; i++){
+         System.out.printf("Testing set%d: %d matches in 200 tests\n",i,count[i-1]);
       }
    }
 }
