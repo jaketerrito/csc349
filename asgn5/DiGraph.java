@@ -3,15 +3,56 @@ import java.util.*;
 public class DiGraph{
    private ArrayList<LinkedList<Integer>> graph;
    
-   public DiGraph(int i){
-      this.graph = new ArrayList<LinkedList<Integer>>(i);
+   public DiGraph(int n){
+      this.graph = new ArrayList<>();
+      for(int i = 0; i < n; i++) {
+         this.graph.add(new LinkedList<Integer>());
+      }
+   }
+
+   private int[] indegrees() {
+      int[] arr = new int[graph.size()];
+      for(int i = 0; i < graph.size(); i++) {
+         for(int dest : graph.get(i)) {
+            arr[dest]++;
+         }
+      }
+      return arr;
+   }
+
+   public int[] topSort() throws Exception{
+      int n = graph.size();
+      int[] in = indegrees();
+      int[] arr = new int[n];
+      ArrayList<Integer> queue = new ArrayList<Integer>();
+      for(int u = 0; u < n; u++) {
+         if(in[u] == 0) {
+            queue.add(u);
+         }
+      }
+      int i = 0;
+      while(queue.size() > 0) {
+         int u = queue.remove(0);
+         arr[i] = u;
+         i++;
+         for(int v : graph.get(u)) {
+            in[v]--;
+            if(in[v] == 0) {
+               queue.add(v);
+            }
+         }
+      }
+      if(i != n) {
+         throw new IllegalArgumentException();
+      }
+      return arr;
    }
 
    public void addEdge(int from, int to){
       graph.get(from-1).add(to-1);
    }
 
-   public void deleteEdge(int to, int from){
+   public void deleteEdge(int from, int to){
       LinkedList<Integer> vertex = graph.get(from-1);
       int toRemove = vertex.indexOf(to-1);
       vertex.remove(toRemove);
@@ -26,13 +67,22 @@ public class DiGraph{
    }
 
    public int vertexCount(){
-      return graph.size();
+      int total = 0;
+      for(LinkedList<Integer> vertex :graph){
+         if(vertex.size() > 0) {
+            total += 1;
+         }
+      }
+      return total;
    }
 
    public void print(){
       for(int i = 0; i < graph.size(); i++){
-         System.out.printf("%d is connected to:",i+1);
          LinkedList<Integer> vertex = graph.get(i);
+         if(vertex.size() == 0) {
+            continue;
+         }
+         System.out.printf("%d is connected to:",i+1);
          for(int j = 0; j < vertex.size();j++){
             if(j == vertex.size() -1){
                System.out.printf(" %d\n",vertex.get(j)+1);
