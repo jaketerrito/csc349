@@ -49,10 +49,16 @@ public class DiGraph{
    }
 
    public void addEdge(int from, int to){
+      if(graph.get(from-1).contains(to-1)){
+         return;
+      }
       graph.get(from-1).add(to-1);
    }
 
    public void deleteEdge(int from, int to){
+      if(!graph.get(from-1).contains(to-1)){
+         return;
+      }
       LinkedList<Integer> vertex = graph.get(from-1);
       int toRemove = vertex.indexOf(to-1);
       vertex.remove(toRemove);
@@ -67,19 +73,14 @@ public class DiGraph{
    }
 
    public int vertexCount(){
-      int total = 0;
-      for(LinkedList<Integer> vertex :graph){
-         if(vertex.size() > 0) {
-            total += 1;
-         }
-      }
-      return total;
+      return graph.size();
    }
 
    public void print(){
       for(int i = 0; i < graph.size(); i++){
          LinkedList<Integer> vertex = graph.get(i);
          if(vertex.size() == 0) {
+            System.out.printf("%d is connected to:\n",i+1);
             continue;
          }
          System.out.printf("%d is connected to:",i+1);

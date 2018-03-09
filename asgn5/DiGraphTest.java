@@ -2,13 +2,14 @@ import java.io.*;
 import java.util.*;
 
 public class DiGraphTest{
-   public static void main(String[] args) throws Exception{
+   public static void main(String[] args) {
       Scanner s = new Scanner(System.in);
-      System.out.println("Number of vertices?");
+      System.out.println("Enter number of vertices");
       int count = s.nextInt();
+      s.nextLine();
       DiGraph graph = new DiGraph(count);
       options();
-      String input = s.next();
+      String input = s.nextLine();
       while(!input.equals("q")){
          switch(input){
             case "a":
@@ -18,10 +19,10 @@ public class DiGraphTest{
                deleteEdge(s,graph);
                break;
             case "e":
-               System.out.printf("Number of edges: %d\n",graph.edgeCount());
+               System.out.printf("Number of edges is %d\n",graph.edgeCount());
                break;
             case "v":
-               System.out.printf("Number of vertices: %d\n",graph.vertexCount());
+               System.out.printf("Number of vertices is %d\n",graph.vertexCount());
                break;
             case "p": 
                System.out.println("The graph is the following:");
@@ -34,30 +35,35 @@ public class DiGraphTest{
                System.out.println("Invalid input.");
                break;
          }
-
-         input = s.next();
+         input = s.nextLine();
       }
+      System.out.println("Good bye.");
    }
 
    private static void deleteEdge(Scanner s, DiGraph g){
-      System.out.printf("Vertex from: ");
       int from = s.nextInt();
-      System.out.printf("Vertex to: ");
       int to = s.nextInt();
+      s.nextLine();
       g.deleteEdge(from,to);
+      System.out.printf("(%d,%d) edge is now deleted from the graph\n",from, to);
    }
 
    private static void addEdge(Scanner s,DiGraph g){
-      System.out.printf("Vertex from: ");
       int from = s.nextInt();
-      System.out.printf("Vertex to: ");
       int to = s.nextInt();
+      s.nextLine();
       g.addEdge(from,to);
-
+      System.out.printf("(%d,%d) edge is now added to the graph\n",from, to);
    }
 
-   private static void printTopSort(DiGraph g) throws Exception{
-      int[] arr = g.topSort();
+   private static void printTopSort(DiGraph g){
+      int[] arr;
+      try{
+         arr = g.topSort();
+      }catch(Exception e){
+         System.out.println("Can't run topological sort on cyclic graph.");
+         return;
+      }
       for(int i = 0; i < arr.length-1; i++) {
          System.out.printf("%d, ", arr[i]+1);
       }
