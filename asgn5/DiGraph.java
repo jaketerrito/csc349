@@ -20,6 +20,70 @@ public class DiGraph{
       return arr;
    }
 
+   private class VertexInfo{
+      int distance;
+      int pred;
+      public VertexInfo(int distance, int pred){
+         this.distance = distance;
+         this.pred = pred;
+      }
+
+      public void setDistance(int d){
+         this.distance = d;
+      }
+      
+      public void setPred(int p){
+         this.pred = p;
+      }
+   }
+
+   private ArrayList<VertexInfo> BFS(int s){
+      ArrayList<VertexInfo> VA = new ArrayList<>();
+      for(int u = 0; u < graph.size(); u ++){
+         VA.add(new VertexInfo(-1,-1));
+      }
+      VA.get(s-1).setDistance(0);
+      ArrayList<Integer> que = new ArrayList<>();
+      que.add(s-1);
+      while(que.size() > 0){
+         int u = que.remove(0);
+         for(int v : graph.get(u)){
+            if(VA.get(v).distance == -1){
+               VA.get(v).setDistance(VA.get(u).distance+1);
+               VA.get(v).setPred(u);
+               que.add(v);
+            }
+         }
+      }
+      return VA;
+   }
+
+   public boolean isTherePath(int from, int to){
+      if(BFS(from).get(to).distance == -1){
+         return false;
+      }
+      return true;
+   }
+
+   public int lengthOfPath(int from, int to){
+      return BFS(from).get(to).distance;
+   }
+
+   public void printPath(int from, int to){
+      ArrayList<VertexInfo> bfs = BFS(from);
+      if(!isTherePath(from,to)){
+         System.out.println("There is no path");
+         return;
+      }
+      String output = "";
+      while(from != to){
+         output = "->" + to + output;
+         to = bfs.get(to).pred;
+      }
+      output = from + output;
+      System.out.println(output);
+   }
+
    public int[] topSort() throws Exception{
       int n = graph.size();
       int[] in = indegrees();

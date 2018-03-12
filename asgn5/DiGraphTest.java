@@ -31,6 +31,15 @@ public class DiGraphTest{
             case "t":
                printTopSort(graph);
                break;
+            case "i":
+               checkForPath(s, graph);
+               break;
+            case "l":
+               getLength(s, graph);
+               break;
+            case "s":
+               printShortest(s, graph);
+               break;
             default: 
                System.out.println("Invalid input.");
                break;
@@ -40,6 +49,39 @@ public class DiGraphTest{
       System.out.println("Good bye.");
    }
 
+   private static void checkForPath(Scanner s, DiGraph g){
+      int from = s.nextInt();
+      int to = s.nextInt();
+      s.nextLine();
+      if(g.isTherePath(from,to)){
+         System.out.printf("There is a path from %d to %d\n",from,to);
+         return;
+      }
+      System.out.printf("There is no path from %d to %d\n",from,to);
+   }
+
+   private static void getLength(Scanner s, DiGraph g){
+      int from = s.nextInt();
+      int to = s.nextInt();
+      s.nextLine();
+      if(g.isTherePath(from,to)){
+         System.out.printf("Length of path from %d to %d is %d\n",from,to,g.lengthOfPath(from,to));
+         return;
+      }
+      System.out.printf("There is no path from %d to %d\n",from,to);
+   }
+
+   private static void printShortest(Scanner s, DiGraph g){
+      int from = s.nextInt();
+      int to = s.nextInt();
+      s.nextLine();
+      if(g.isTherePath(from,to)){
+         System.out.printf("Shortest path from %d to %d is:\n",from,to);
+         g.printPath(from,to);
+         return;
+      }
+      System.out.printf("There is no path from %d to %d\n",from,to);
+   }
    private static void deleteEdge(Scanner s, DiGraph g){
       int from = s.nextInt();
       int to = s.nextInt();
@@ -78,6 +120,9 @@ public class DiGraphTest{
       System.out.println("- vertex count (enter v)");
       System.out.println("- print graph (enter p)");
       System.out.println("- print topological sort of graph (enter t)");
+      System.out.println("- check for path (enter i)");
+      System.out.println("- find length of path (enter l)");
+      System.out.println("- print shortest path (enter s)");
       System.out.println("- Quit (enter q)");
    }
 }
