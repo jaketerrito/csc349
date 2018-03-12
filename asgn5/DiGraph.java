@@ -42,9 +42,9 @@ public class DiGraph{
       for(int u = 0; u < graph.size(); u ++){
          VA.add(new VertexInfo(-1,-1));
       }
-      VA.get(s-1).setDistance(0);
+      VA.get(s).setDistance(0);
       ArrayList<Integer> que = new ArrayList<>();
-      que.add(s-1);
+      que.add(s);
       while(que.size() > 0){
          int u = que.remove(0);
          for(int v : graph.get(u)){
@@ -59,18 +59,18 @@ public class DiGraph{
    }
 
    public boolean isTherePath(int from, int to){
-      if(BFS(from).get(to).distance == -1){
+      if(BFS(from-1).get(to-1).distance == -1){
          return false;
       }
       return true;
    }
 
    public int lengthOfPath(int from, int to){
-      return BFS(from).get(to).distance;
+      return BFS(from-1).get(to-1).distance;
    }
 
    public void printPath(int from, int to){
-      ArrayList<VertexInfo> bfs = BFS(from);
+      ArrayList<VertexInfo> bfs = BFS(from-1);
       if(!isTherePath(from,to)){
          System.out.println("There is no path");
          return;
@@ -78,10 +78,33 @@ public class DiGraph{
       String output = "";
       while(from != to){
          output = "->" + to + output;
-         to = bfs.get(to).pred;
+         to = bfs.get(to-1).pred + 1;
       }
       output = from + output;
       System.out.println(output);
+   }
+
+   private class TreeNode {
+      int vert;
+      LinkedList<TreeNode> children;
+
+      public TreeNode(int vert) {
+         this.vert = vert;
+         children = new LinkedList<>();
+      }
+   }
+
+   private TreeNode buildTree(int s) {
+      ArrayList<VertexInfo> bfs = BFS(s-1);
+      TreeNode root = new TreeNode(s-1);
+      TreeNode pred = root;
+      ArrayList<TreeNode> nodes = new ArrayList<>();
+      for(int i = 0; i < graph.size(); i++) {
+         nodes.add(new TreeNode(i));
+      }
+      while(bfs.size() > 0) {
+         
+      }
    }
 
    public int[] topSort() throws Exception{
