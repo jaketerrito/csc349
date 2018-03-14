@@ -40,6 +40,9 @@ public class DiGraphTest{
             case "s":
                printShortest(s, graph);
                break;
+            case "b":
+               printTree(s,graph);
+               break;
             default: 
                System.out.println("Invalid input.");
                break;
@@ -112,6 +115,11 @@ public class DiGraphTest{
       System.out.printf("%d\n", arr[arr.length-1]+1);
    };
 
+   private static void printTree(Scanner s, DiGraph g){
+      int root = s.nextInt();
+      s.nextLine();
+      g.printTree(root);
+   }
    private static void options(){
       System.out.println("Choose one of the following operations:");
       System.out.println("- add edge (enter a)");
@@ -123,6 +131,7 @@ public class DiGraphTest{
       System.out.println("- check for path (enter i)");
       System.out.println("- find length of path (enter l)");
       System.out.println("- print shortest path (enter s)");
+      System.out.println("- print breadth first tree (enter b)");
       System.out.println("- Quit (enter q)");
    }
 }

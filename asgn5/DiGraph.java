@@ -96,14 +96,32 @@ public class DiGraph{
 
    private TreeNode buildTree(int s) {
       ArrayList<VertexInfo> bfs = BFS(s-1);
-      TreeNode root = new TreeNode(s-1);
-      TreeNode pred = root;
       ArrayList<TreeNode> nodes = new ArrayList<>();
       for(int i = 0; i < graph.size(); i++) {
          nodes.add(new TreeNode(i));
       }
-      while(bfs.size() > 0) {
-         
+      for(int i = 0; i < bfs.size(); i++) {
+         VertexInfo temp = bfs.get(i);
+         if(temp.distance == -1 || temp.pred == -1){
+            continue;
+         }
+         nodes.get(temp.pred).children.add(nodes.get(i));
+      }
+      return nodes.get(s-1);
+   }
+
+   public void printTree(int s){
+      TreeNode root = buildTree(s);
+      printNode(root,0);
+   }
+
+   private void printNode(TreeNode node,int depth){
+      for(int i = 0; i < depth; i++){
+         System.out.print("    ");
+      }
+      System.out.println(node.vert+1);
+      for(TreeNode child: node.children){
+         printNode(child,depth+1);
       }
    }
 
